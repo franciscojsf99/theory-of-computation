@@ -1,0 +1,403 @@
+; Temos de obrigatoriamente ler um simbolo Q
+start Q_____ Q_____ r***** 1
+
+; Calcula o K, escrevendo-o em unario na segunda fita 
+1 0_____ *1____ rr**** 1
+1 1_____ *1____ rr**** 1
+1 2_____ *1____ rr**** 1
+1 3_____ *1____ rr**** 1
+1 4_____ *1____ rr**** 1
+1 5_____ *1____ rr**** 1
+1 6_____ *1____ rr**** 1
+1 7_____ *1____ rr**** 1
+1 8_____ *1____ rr**** 1
+1 9_____ *1____ rr**** 1
+1 A_____ A_____ r***** 2
+1 ***___ ***___ ****** halt-reject
+
+; Calcula o T, escrevendo-o em unario na terceira fita
+2 0_____ *_1___ r*r*** 2
+2 1_____ *_1___ r*r*** 2
+2 2_____ *_1___ r*r*** 2
+2 3_____ *_1___ r*r*** 2
+2 4_____ *_1___ r*r*** 2
+2 5_____ *_1___ r*r*** 2
+2 6_____ *_1___ r*r*** 2
+2 7_____ *_1___ r*r*** 2
+2 8_____ *_1___ r*r*** 2
+2 9_____ *_1___ r*r*** 2
+2 Q_____ *_____ rl**** 3
+2 Y_____ *_____ rl**** 2y
+2 N_____ *_____ rl**** 2n
+2 ***___ ***___ ****** halt-reject
+
+; Se em vez de Q ler um Y, verifica se a sua representacao esta correta
+2y Y1____ Y1____ rl**** 2y
+2y Y_____ Y_____ r***** 2y
+2y A1____ A1____ *l**** 2y
+2y A_____ A_____ r*l*** 4
+2y ***___ ***___ ****** halt-reject
+
+; Se em vez de Q ler um N, verifica se a sua representacao esta correta
+2n N1____ N1____ rl**** 2n
+2n N_____ N_____ r***** 2n
+2n A1____ A1____ *l**** 2n
+2n A_____ A_____ r*l*** 4
+2n ***___ ***___ ****** halt-reject
+
+; Verifica se a representacao do segundo estado da primeira transicao esta correta
+3 01____ *1____ rl**** 3
+3 11____ *1____ rl**** 3
+3 21____ *1____ rl**** 3
+3 31____ *1____ rl**** 3
+3 41____ *1____ rl**** 3
+3 51____ *1____ rl**** 3
+3 61____ *1____ rl**** 3
+3 71____ *1____ rl**** 3
+3 81____ *1____ rl**** 3
+3 91____ *1____ rl**** 3
+3 A_____ A_____ r*l*** 4
+3 ***___ ***___ ****** halt-reject
+
+; Verifica se a representacao do segundo simbolo da primeira transicao esta correta
+4 0_1___ *_1___ r*l*** 4
+4 1_1___ *_1___ r*l*** 4
+4 2_1___ *_1___ r*l*** 4
+4 3_1___ *_1___ r*l*** 4
+4 4_1___ *_1___ r*l*** 4
+4 5_1___ *_1___ r*l*** 4
+4 6_1___ *_1___ r*l*** 4
+4 7_1___ *_1___ r*l*** 4
+4 8_1___ *_1___ r*l*** 4
+4 9_1___ *_1___ r*l*** 4
+4 R_____ *_____ r***** 5
+4 S_____ *_____ r***** 5
+4 L_____ *_____ r***** 5
+4 ***___ ***___ ****** halt-reject
+
+; Estado da recursao. Enquanto encontrar ; vai verificar a correcao dessa transicao
+5 ;_____ ;_____ r***** 6
+5 $_____ $_____ ****** 7
+5 ***___ ***___ ****** halt-reject
+
+; Os estados 6, 6a, 6b, 6c, 6d, 6y e 6n verificam que a representacao da transicao encontra-se correta. 
+
+6 Q_____ ***___ rr**** 6a
+6 ***___ ***___ ****** halt-reject
+
+6a 01____ *1____ rr**** 6a
+6a 11____ *1____ rr**** 6a
+6a 21____ *1____ rr**** 6a
+6a 31____ *1____ rr**** 6a
+6a 41____ *1____ rr**** 6a
+6a 51____ *1____ rr**** 6a
+6a 61____ *1____ rr**** 6a
+6a 71____ *1____ rr**** 6a
+6a 81____ *1____ rr**** 6a
+6a 91____ *1____ rr**** 6a
+6a A_____ A_____ r*r*** 6b
+6a ***___ ***___ ****** halt-reject
+
+6b 0_1___ *_1___ r*r*** 6b
+6b 1_1___ *_1___ r*r*** 6b
+6b 2_1___ *_1___ r*r*** 6b
+6b 3_1___ *_1___ r*r*** 6b
+6b 4_1___ *_1___ r*r*** 6b
+6b 5_1___ *_1___ r*r*** 6b
+6b 6_1___ *_1___ r*r*** 6b
+6b 7_1___ *_1___ r*r*** 6b
+6b 8_1___ *_1___ r*r*** 6b
+6b 9_1___ *_1___ r*r*** 6b
+6b Q_____ Q_____ rl**** 6c
+6b Y_____ Y_____ rl**** 6y
+6b N_____ N_____ rl**** 6n
+6b ***___ ***___ ****** halt-reject
+
+6c 01____ *1____ rl**** 6c
+6c 11____ *1____ rl**** 6c
+6c 21____ *1____ rl**** 6c
+6c 31____ *1____ rl**** 6c
+6c 41____ *1____ rl**** 6c
+6c 51____ *1____ rl**** 6c
+6c 61____ *1____ rl**** 6c
+6c 71____ *1____ rl**** 6c
+6c 81____ *1____ rl**** 6c
+6c 91____ *1____ rl**** 6c
+6c A_____ A_____ r*l*** 6d
+6c ***___ ***___ ****** halt-reject
+
+6y Y1____ Y1____ rl**** 6y
+6y Y_____ Y_____ r***** 6y
+6y A1____ A1____ *l**** 6y
+6y A_____ A_____ r*l*** 6d
+6y ***___ ***___ ****** halt-reject
+
+6n N1____ N1____ rl**** 6n
+6n N_____ N_____ r***** 6n
+6n A1____ A1____ *l**** 6n
+6n A_____ A_____ r*l*** 6d
+6n ***___ ***___ ****** halt-reject
+
+6d 0_1___ *_1___ r*l*** 6d
+6d 1_1___ *_1___ r*l*** 6d
+6d 2_1___ *_1___ r*l*** 6d
+6d 3_1___ *_1___ r*l*** 6d
+6d 4_1___ *_1___ r*l*** 6d
+6d 5_1___ *_1___ r*l*** 6d
+6d 6_1___ *_1___ r*l*** 6d
+6d 7_1___ *_1___ r*l*** 6d
+6d 8_1___ *_1___ r*l*** 6d
+6d 9_1___ *_1___ r*l*** 6d
+6d R_____ *_____ r***** 5
+6d S_____ *_____ r***** 5
+6d L_____ *_____ r***** 5
+6d ***___ ***___ ****** halt-reject
+
+; Recua nas segundas e terceiras fitas
+7 $**___ $**___ *ll*** 7
+7 $_____ $_____ *rr*** verifyK_T
+
+; Verifica que quer o K quer o T sao positivos
+verifyK_T $11___ $11___ l***** q0
+verifyK_T $**___ $**___ ****** halt-reject
+
+; Rebobina primeira fita e inicia a primeira fase da execucao da maquina universal
+q0 _11___ _11___ r***** q1
+q0 *11___ *11___ l***** q0
+
+; Copia transicoes de M para fita 4
+q1 Q11___ Q11Q__ r**r** q1
+q1 A11___ A11A__ r**r** q1
+q1 Y11___ Y11Y__ r**r** q1
+q1 N11___ N11N__ r**r** q1
+q1 S11___ S11S__ r**r** q1
+q1 L11___ L11L__ r**r** q1
+q1 R11___ R11R__ r**r** q1
+q1 011___ 0110__ r**r** q1
+q1 111___ 1111__ r**r** q1
+q1 211___ 2112__ r**r** q1
+q1 311___ 3113__ r**r** q1
+q1 411___ 4114__ r**r** q1
+q1 511___ 5115__ r**r** q1
+q1 611___ 6116__ r**r** q1
+q1 711___ 7117__ r**r** q1
+q1 811___ 8118__ r**r** q1
+q1 911___ 9119__ r**r** q1
+q1 ;11___ ;11;__ r**r** q1
+q1 $11___ $11___ r***** q2a
+
+; Se for palavra vazia coloca A0s
+q2a _11___ _11__A *****r q2b
+q2a *11___ *11___ ****** q2
+q2b _11___ _11__0 **r**r q2b
+q2b _1____ _1____ **l*** q2c
+q2c _11___ _11___ **l*** q2c
+q2c _1____ _1__Q_ **r*r* q3
+
+; Copia rep(w) para fita 6
+q2 A11___ A11__A r****r q2
+q2 011___ 011__0 r****r q2
+q2 111___ 111__1 r****r q2
+q2 211___ 211__2 r****r q2
+q2 311___ 311__3 r****r q2
+q2 411___ 411__4 r****r q2
+q2 511___ 511__5 r****r q2
+q2 611___ 611__6 r****r q2
+q2 711___ 711__7 r****r q2
+q2 811___ 811__8 r****r q2
+q2 911___ 911__9 r****r q2
+q2 _11___ _11_Q_ ****r* q3
+
+; Coloca estado inicial na fita 5
+q3 _11___ _11_0_ *r**r* q3
+q3 __1___ __1___ *****l q4
+
+; Rebobina em rep(w) fita 5
+q4 __1___ __1___ ***l*r q5
+q4 __1__* __1__* *****l q4
+
+; Rebobina nas transicoes na fita 4
+q5 __1__A __1__A ***rl* q6
+q5 __1*_A __1*_A ***l** q5
+
+; Rebobina no estado na fita 5
+q6 __1QQA __1QQA ***rr* q7
+q6 __1QYA __1QYA *****l q25
+q6 __1QNA __1QNA ****** halt-reject
+q6 __1Q*A __1Q*A ****l* q6
+
+; compara estado corrente com estado da transicao
+q7 __100A __100A ***rr* q7
+q7 __111A __111A ***rr* q7
+q7 __122A __122A ***rr* q7
+q7 __133A __133A ***rr* q7
+q7 __144A __144A ***rr* q7
+q7 __155A __155A ***rr* q7
+q7 __166A __166A ***rr* q7
+q7 __177A __177A ***rr* q7
+q7 __188A __188A ***rr* q7
+q7 __199A __199A ***rr* q7
+q7 __1A_A __1A_A ***r*r q12
+q7 __1**A __1**A ****** q8
+
+; Rebobina estado na fita 5
+q8 __1*_A __1*_A ****** q9
+q8 __1**A __1**A ****l* q8
+
+; Procura nova transicao na fita 4
+q9 __1;_A __1;_A ***rr* q11
+q9 __1__A __1__A ****** abort
+q9 __1*_A __1*_A ***r** q9
+
+; Rebobina fita 6
+q10 __1*_A __1*_A ****l* q8
+q10 __1*_* __1*_* *****l q10
+
+; Novo estado a comparar
+q11 __1QQA __1QQA ***rr* q7
+
+; Compara simbolos
+q12 __10_0 __10_0 ***r*r q12
+q12 __11_1 __11_1 ***r*r q12
+q12 __12_2 __12_2 ***r*r q12
+q12 __13_3 __13_3 ***r*r q12
+q12 __14_4 __14_4 ***r*r q12
+q12 __15_5 __15_5 ***r*r q12
+q12 __16_6 __16_6 ***r*r q12
+q12 __17_7 __17_7 ***r*r q12
+q12 __18_8 __18_8 ***r*r q12
+q12 __19_9 __19_9 ***r*r q12
+q12 __1Q_A __1Q_A ****l* q13
+q12 __1Y_A __1Y_A ****l* q13
+q12 __1N_A __1N_A ****l* q13
+q12 __1Q__ __1Q__ ****l* q13
+q12 __1Y__ __1Y__ ****l* q13
+q12 __1N__ __1N__ ****l* q13
+q12 __1*_* __1*_* *****l q10
+
+; Rebobina estado fita 5
+q13 __1QQ* __1QQ* ***rr* q14
+q13 __1YQ* __1YY* ***rr* q14
+q13 __1NQ* __1NN* ***rr* q14
+q13 __1*** __1*** ****l* q13
+
+; Copia novo estado
+q14 __1A_* __1A_* *****l q15
+q14 __10** __100* ***rr* q14
+q14 __11** __111* ***rr* q14
+q14 __12** __122* ***rr* q14
+q14 __13** __133* ***rr* q14
+q14 __14** __144* ***rr* q14
+q14 __15** __155* ***rr* q14
+q14 __16** __166* ***rr* q14
+q14 __17** __177* ***rr* q14
+q14 __18** __188* ***rr* q14
+q14 __19** __199* ***rr* q14
+q14 __1Y** __1YY* ***rr* q14
+q14 __1N** __1NN* ***rr* q14
+
+; Rebobina fita 6
+q15 __1A_A __1A_A ***r*r q16
+q15 __1A_* __1A_* *****l q15
+
+; Copia novo simbolo fita 6
+q16 __1L_A __1L_A *****l q17
+q16 __1S_A __1S_A *****l q17
+q16 __1L__ __1L__ *****l q17
+q16 __1S__ __1S__ *****l q17
+q16 __1R_A __1R_A ****** q5
+q16 __1R__ __1R_A *****r q21
+q16 __10_* __10_0 ***r*r q16
+q16 __11_* __11_1 ***r*r q16
+q16 __12_* __12_2 ***r*r q16
+q16 __13_* __13_3 ***r*r q16
+q16 __14_* __14_4 ***r*r q16
+q16 __15_* __15_5 ***r*r q16
+q16 __16_* __16_6 ***r*r q16
+q16 __17_* __17_7 ***r*r q16
+q16 __18_* __18_8 ***r*r q16
+q16 __19_* __19_9 ***r*r q16
+
+; Le simbolo L ou S rebobinando uma vez 
+q17 __1L_A __1L_A *****l q20
+q17 __1S_A __1S_A ****** q5
+q17 __1L_* __1L_* *****l q17
+q17 __1S_* __1S_* *****l q17
+
+; Le simbolo L e rebobina outra vez
+q20 __1L_A __1L_A ****** q5
+q20 __1L__ __1L__ ****** q23
+q20 __1L_* __1L_* *****l q20
+
+; Le simbolo R e chega a um espaco no lado direito da fita
+q21 __1R__ __1R_0 **r**r q21
+q21 ___R__ ___R__ **l**l q22
+
+; Rebobina 3 e 6 fita
+q22 __1R_0 __1R_0 **l**l q22
+q22 ___R_A ___R_A **r*** q5
+
+; Le simbolo L e chega a um espaco no lado esquerdo da fita
+q23 __1L__ __1L_0 **r**l q23
+q23 ___L__ ___L_A **l*** q24
+
+; Rebobina fita 4
+q24 __1L_A __1L_A **l*** q24
+q24 ___L_A ___L_A **r*** q5
+
+; Rebobina output
+q25 __1QY_ __1QY_ *****r q26
+q25 __1QY* __1QY* *****l q25
+
+; Le um A para começar detecao de A0s
+q26 __1QYA __1QYA *****r q27
+
+; Se nao encontrar um simbolo diferente de A0s fica em q27 e apaga
+q27 __1QYA __1QYA *****l q28
+q27 __1QY_ __1QY_ *****l q28
+q27 __1QY0 __1QY0 *****r q27
+q27 __1QY* __1QY* ****** q31
+
+; Apaga zero do lado esquerdo
+q28 __1QY0 __1QY_ *****l q28
+q28 __1QYA __1QY_ *****r q29
+
+; Em frente ate ao proximo simbolo, se houver a esquerda
+q29 __1QY_ __1QY_ **r**r q29
+q29 ___QYA ___QYA **l*** q30
+q29 ___QY_ ___QY_ ****** halt-accept
+
+; Rebobina fita 3
+q30 __1QYA __1QYA **l*** q30
+q30 ___QYA ___QYA **r**r q27
+
+; Nao ha mais zeros a esquerda, procura zeros a direita, rebobina para iniciar procura
+q31 __1QYA __1QYA *****r q32
+q31 __1QY* __1QY* *****l q31
+
+; Encontra primeiro zero a direita
+q32 __1QY_ __1QY_ *****l q34
+q32 __1QYA __1QYA *****l q34
+q32 __1QY0 __1QY0 *****r q32
+q32 __1QY* __1QY* ****** q33
+
+; Nao e zero a direita continua a procura
+q33 __1QYA __1QYA *****r q32
+q33 __1QY_ __1QY_ *****l cursor_final
+q33 __1QY* __1QY* *****r q33 
+
+; Encontrado zero a direita, marcar com x para depois voltar
+q34 __1QYA __1QYx *****r q35
+q34 __1QY* __1QY* *****l q34
+
+; Apagar tudo a direita desde o primeiro zero
+q35 __1QY_ __1QY_ *****l q36
+q35 __1QY* __1QY_ *****r q35
+
+; Rebobina ate x
+q36 __1QYx __1QY_ *****l cursor_final
+q36 __1QY_ __1QY_ *****l q36
+
+; Reposiciona cursor
+cursor_final __1QY_ __1QY_ *****r halt-accept
+cursor_final __1QY* __1QY* *****l cursor_final

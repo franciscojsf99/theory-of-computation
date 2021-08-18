@@ -1,0 +1,164 @@
+; Temos de obrigatoriamente ler um simbolo Q.
+start Q__ Q__ r** 1  
+start ___ ___ *** halt-accept              
+start *** *** *** halt-reject
+
+; Calcula o K, escrevendo-o em unario na segunda fita 
+1 0__ *1_ rr* 1
+1 1__ *1_ rr* 1
+1 2__ *1_ rr* 1
+1 3__ *1_ rr* 1
+1 4__ *1_ rr* 1
+1 5__ *1_ rr* 1
+1 6__ *1_ rr* 1
+1 7__ *1_ rr* 1
+1 8__ *1_ rr* 1
+1 9__ *1_ rr* 1
+1 A__ A__ r** 2
+1 *** *** *** halt-reject
+
+; Calcula o T, escrevendo-o em unario na terceira fita. 
+2 0__ *_1 r*r 2
+2 1__ *_1 r*r 2
+2 2__ *_1 r*r 2
+2 3__ *_1 r*r 2
+2 4__ *_1 r*r 2
+2 5__ *_1 r*r 2
+2 6__ *_1 r*r 2
+2 7__ *_1 r*r 2
+2 8__ *_1 r*r 2
+2 9__ *_1 r*r 2
+2 Q__ *__ rl* 3
+2 Y__ *__ rl* 2y
+2 N__ *__ rl* 2n
+2 *** *** *** halt-reject
+
+; Se em vez de Q ler um Y, verifica se a sua representacao esta correta.
+2y Y1_ Y1_ rl* 2y
+2y Y__ Y__ r** 2y
+2y A1_ A1_ *l* 2y
+2y A__ A__ r*l 4
+2y *** *** *** halt-reject
+
+; Se em vez de Q ler um N, verifica se a sua representacao esta correta.
+2n N1_ N1_ rl* 2n
+2n N__ N__ r** 2n
+2n A1_ A1_ *l* 2n
+2n A__ A__ r*l 4
+2n *** *** *** halt-reject
+
+; Verifica se a representacao do segundo estado da primeira transicao esta correta.
+3 01_ *1_ rl* 3
+3 11_ *1_ rl* 3
+3 21_ *1_ rl* 3
+3 31_ *1_ rl* 3
+3 41_ *1_ rl* 3
+3 51_ *1_ rl* 3
+3 61_ *1_ rl* 3
+3 71_ *1_ rl* 3
+3 81_ *1_ rl* 3
+3 91_ *1_ rl* 3
+3 A__ A__ r*l 4
+3 *** *** *** halt-reject
+
+; Verifica se a representacao do segundo simbolo da primeira transicao esta correta.
+4 0_1 *_1 r*l 4
+4 1_1 *_1 r*l 4
+4 2_1 *_1 r*l 4
+4 3_1 *_1 r*l 4
+4 4_1 *_1 r*l 4
+4 5_1 *_1 r*l 4
+4 6_1 *_1 r*l 4
+4 7_1 *_1 r*l 4
+4 8_1 *_1 r*l 4
+4 9_1 *_1 r*l 4
+4 R__ *__ r** 5
+4 S__ *__ r** 5
+4 L__ *__ r** 5
+4 *** *** *** halt-reject
+
+; Estado da recursÃ£o. Enquanto encontrar ; vai verificar a correcao dessa transicao.
+5 ;__ ;__ r** 6
+5 ___ ___ l** 7
+5 *** *** *** halt-reject
+
+; Os estados 6, 6a, 6b, 6c, 6d, 6y e 6n verificam que a representacao da transicao encontra-se correta. 
+
+6 Q__ *** rr* 6a
+6 *** *** *** halt-reject
+
+6a 01_ *1_ rr* 6a
+6a 11_ *1_ rr* 6a
+6a 21_ *1_ rr* 6a
+6a 31_ *1_ rr* 6a
+6a 41_ *1_ rr* 6a
+6a 51_ *1_ rr* 6a
+6a 61_ *1_ rr* 6a
+6a 71_ *1_ rr* 6a
+6a 81_ *1_ rr* 6a
+6a 91_ *1_ rr* 6a
+6a A__ A__ r*r 6b
+6a *** *** *** halt-reject
+
+6b 0_1 *_1 r*r 6b
+6b 1_1 *_1 r*r 6b
+6b 2_1 *_1 r*r 6b
+6b 3_1 *_1 r*r 6b
+6b 4_1 *_1 r*r 6b
+6b 5_1 *_1 r*r 6b
+6b 6_1 *_1 r*r 6b
+6b 7_1 *_1 r*r 6b
+6b 8_1 *_1 r*r 6b
+6b 9_1 *_1 r*r 6b
+6b Q__ Q__ rl* 6c
+6b Y__ Y__ rl* 6y
+6b N__ N__ rl* 6n
+6b *** *** *** halt-reject
+
+6c 01_ *1_ rl* 6c
+6c 11_ *1_ rl* 6c
+6c 21_ *1_ rl* 6c
+6c 31_ *1_ rl* 6c
+6c 41_ *1_ rl* 6c
+6c 51_ *1_ rl* 6c
+6c 61_ *1_ rl* 6c
+6c 71_ *1_ rl* 6c
+6c 81_ *1_ rl* 6c
+6c 91_ *1_ rl* 6c
+6c A__ A__ r*l 6d
+6c *** *** *** halt-reject
+
+6y Y1_ Y1_ rl* 6y
+6y Y__ Y__ r** 6y
+6y A1_ A1_ *l* 6y
+6y A__ A__ r*l 6d
+6y *** *** *** halt-reject
+
+6n N1_ N1_ rl* 6n
+6n N__ N__ r** 6n
+6n A1_ A1_ *l* 6n
+6n A__ A__ r*l 6d
+6n *** *** *** halt-reject
+
+6d 0_1 *_1 r*l 6d
+6d 1_1 *_1 r*l 6d
+6d 2_1 *_1 r*l 6d
+6d 3_1 *_1 r*l 6d
+6d 4_1 *_1 r*l 6d
+6d 5_1 *_1 r*l 6d
+6d 6_1 *_1 r*l 6d
+6d 7_1 *_1 r*l 6d
+6d 8_1 *_1 r*l 6d
+6d 9_1 *_1 r*l 6d
+6d R__ *__ r** 5
+6d S__ *__ r** 5
+6d L__ *__ r** 5
+6d *** *** *** halt-reject
+
+; Recua nas segundas e terceiras fitas. 
+7 *** *** *ll 7
+7 *__ *__ *rr verifyK_T
+
+; Verifica que quer o K quer o T sÃ£o positivos.
+verifyK_T *11 *11 *** halt-accept
+verifyK_T *** *** *** halt-reject
